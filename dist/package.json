@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node app-server.js",
-    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css script.js app-server.js package.json Dockerfile dist/ && cp -R assets public dist/"
+    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css script.js app-server.js package.json Dockerfile build-seo-pages.js page-template.html robots.txt sitemap.xml dist/ && cp -R assets public dist/ && node build-seo-pages.js --output dist"
   }
 }

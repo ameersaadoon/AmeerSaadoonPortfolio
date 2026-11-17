@@ -4,6 +4,7 @@ const path = require('path');
 
 const siteRoot = __dirname;
 const port = Number(process.env.PORT || 3000);
+const publicOrigin = 'https://ameersaadoon.github.io/AmeerSaadoonPortfolio';
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -35,7 +36,9 @@ function renderPage(template, requestedLanguage) {
     .replace(/(<meta property="og:description"[^>]*content=")[^"]*("[^>]*>)/, `$1${content.meta.description}$2`)
     .replace(/(<meta name="twitter:title"[^>]*content=")[^"]*("[^>]*>)/, `$1${content.meta.title}$2`)
     .replace(/(<meta name="twitter:description"[^>]*content=")[^"]*("[^>]*>)/, `$1${content.meta.description}$2`)
-    .replace(/<div class="timeline reveal reveal-delay" id="timeline" data-render="experience"><\/div>/, `<div class="timeline reveal reveal-delay" id="timeline" data-render="experience">${buildTimelineMarkup(content)}</div>`);
+    .replace(/(<link rel="canonical"[^>]*href=")[^"]*("[^>]*>)/, `$1${publicOrigin}/?lang=${language}$2`)
+    .replace(/(<meta property="og:url"[^>]*content=")[^"]*("[^>]*>)/, `$1${publicOrigin}/?lang=${language}$2`)
+    .replace(/<!-- TIMELINE_CONTENT -->[\s\S]*?<!-- \/TIMELINE_CONTENT -->/, `<!-- TIMELINE_CONTENT -->${buildTimelineMarkup(content)}<!-- /TIMELINE_CONTENT -->`);
 
   html = html.replace(/<([a-z0-9]+)([^>]*data-i18n="([^"]+)"[^>]*)>[\s\S]*?<\/\1>/gi, (match, tag, attributes, key) => {
     const value = readContent(content, key);

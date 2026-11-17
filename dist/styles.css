@@ -99,6 +99,7 @@ h1 em { display:block; }
 .about-content blockquote { margin:0 0 36px; padding-left:23px; border-left:2px solid var(--gold); color:var(--gold-light); font-family:'Playfair Display',serif; font-size:27px; line-height:1.35; }
 .about-content p { color:var(--muted); font-size:14px; line-height:1.9; }
 .about-content p + p { margin-top:16px; }
+.identity-note { color:#718295 !important; font-size:11px !important; line-height:1.7 !important; }
 .signature-line { display:flex; align-items:baseline; gap:15px; margin-top:34px; padding-top:19px; border-top:1px solid var(--line); }
 .signature { color:var(--gold-light); font-family:'Playfair Display',serif; font-style:italic; font-size:20px; }
 .signature-label { color:#6f8192; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }

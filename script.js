@@ -2,7 +2,9 @@ const header = document.getElementById('siteHeader');
 const menuToggle = document.getElementById('menuToggle');
 const siteNav = document.getElementById('siteNav');
 const scrollProgress = document.getElementById('scrollProgress');
-const currentLanguage = new URL(window.location.href).searchParams.get('lang') === 'ar' ? 'ar' : 'en';
+const url = new URL(window.location.href);
+const currentLanguage = url.searchParams.get('lang') === 'ar' ? 'ar' : 'en';
+const publicOrigin = 'https://ameersaadoon.github.io/AmeerSaadoonPortfolio';
 const themeToggle = document.getElementById('themeToggle');
 let storedTheme = null;
 try { storedTheme = localStorage.getItem('portfolio-theme'); } catch (_) { /* Storage may be unavailable in private contexts. */ }
@@ -61,6 +63,8 @@ const applyLanguage = (dictionary) => {
   document.getElementById('ogDescription')?.setAttribute('content', dictionary.meta.description);
   document.getElementById('twitterTitle')?.setAttribute('content', dictionary.meta.title);
   document.getElementById('twitterDescription')?.setAttribute('content', dictionary.meta.description);
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', `${publicOrigin}/?lang=${currentLanguage}`);
+  document.getElementById('ogUrl')?.setAttribute('content', `${publicOrigin}/?lang=${currentLanguage}`);
   document.querySelectorAll('[data-i18n]').forEach((element) => {
     const value = getValue(dictionary, element.dataset.i18n);
     if (value !== undefined) element.innerHTML = value;
